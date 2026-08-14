@@ -82,17 +82,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       </div>
     `;
 
-    // Attempt 1: Send to official company emails
+    // Try custom domain first
     let response = await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: ['contact@amopatioreno.fr', 'beaupuy.marion@outlook.fr', 'beaupuy.marion86@gmail.com'],
+      from: 'contact@amopatioreno.fr',
+      to: ['contact@amopatioreno.fr'],
       subject: `Nouveau Message Client — ${fullName} (${cityName})`,
       html: htmlContent,
     });
 
-    // Attempt 2: If Resend restricts to account owner in testing mode, send exclusively to registered account owner
+    // If custom domain fails or is unverified, fallback to sandbox address (registered account owner)
     if (response.error) {
-      console.warn('Attempt 1 error, fallback to registered account owner email:', response.error);
+      console.warn('Custom domain error, attempting sandbox email dispatch:', response.error.message);
       response = await resend.emails.send({
         from: 'onboarding@resend.dev',
         to: ['beaupuy.marion86@gmail.com'],
