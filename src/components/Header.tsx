@@ -194,17 +194,6 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
 
           <button
-            onClick={() => handleNavClick('blog')}
-            className={`px-3.5 py-2 rounded-md transition-colors ${
-              activeTab === 'blog'
-                ? 'bg-[#361B00] text-white font-bold'
-                : 'hover:bg-stone-100 hover:text-[#361B00]'
-            }`}
-          >
-            Blog & Guides (40+)
-          </button>
-
-          <button
             onClick={() => handleNavClick('contact_section')}
             className="px-3.5 py-2 rounded-md hover:bg-stone-100 hover:text-[#361B00]"
           >
