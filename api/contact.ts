@@ -49,7 +49,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               <td style="padding: 8px 0;">${fullName}</td>
             </tr>
             <tr>
-              <td style="padding: 8px 0; font-weight: bold;">Adresse Email :</td>
+              <td style="padding: 8px 0; font-weight: bold;">Adresse Email Client :</td>
               <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #4d843d;">${email}</a></td>
             </tr>
             <tr>
@@ -82,20 +82,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       </div>
     `;
 
-    // Try custom domain first
+    // Production sending: From verified domain contact@amopatioreno.fr
     let response = await resend.emails.send({
-      from: 'contact@amopatioreno.fr',
-      to: ['contact@amopatioreno.fr'],
+      from: 'AMO Patio Réno <contact@amopatioreno.fr>',
+      to: ['contact@amopatioreno.fr', 'beaupuy.marion@outlook.fr'],
+      replyTo: email,
       subject: `Nouveau Message Client — ${fullName} (${cityName})`,
       html: htmlContent,
     });
 
-    // If custom domain fails or is unverified, fallback to sandbox address (registered account owner)
+    // Fallback if needed
     if (response.error) {
-      console.warn('Custom domain error, attempting sandbox email dispatch:', response.error.message);
+      console.warn('Custom domain error, attempting fallback send:', response.error.message);
       response = await resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: ['beaupuy.marion86@gmail.com'],
+        to: ['beaupuy.marion86@gmail.com', 'beaupuy.marion@outlook.fr'],
+        replyTo: email,
         subject: `[PROSPECT WEB] Nouveau Message Client — ${fullName} (${cityName})`,
         html: htmlContent,
       });
