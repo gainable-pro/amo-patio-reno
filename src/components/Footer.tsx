@@ -8,6 +8,7 @@ import {
   X
 } from 'lucide-react';
 import { ACRONYM_DICTIONARY } from '../data/companyData';
+import { LegalNoticeModal } from './LegalNoticeModal';
 
 interface FooterProps {
   onNavigateTab: (tabId: string) => void;
@@ -17,6 +18,7 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateTab,
 }) => {
   const [glossaryModalOpen, setGlossaryModalOpen] = useState(false);
+  const [legalModalOpen, setLegalModalOpen] = useState(false);
 
   return (
     <footer className="bg-[#1C0E00] text-amber-50/90 pt-12 pb-8 border-t border-amber-950/40 font-sans">
@@ -141,11 +143,22 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex items-center gap-4 text-[11px]">
             <span>OPQIBI RGE N°1911</span>
             <span>CCI EcoCampus Référente</span>
-            <span>Mentions Légales</span>
+            <button
+              onClick={() => setLegalModalOpen(true)}
+              className="underline hover:text-[#83ae42] transition-colors cursor-pointer"
+            >
+              Mentions Légales
+            </button>
           </div>
         </div>
 
       </div>
+
+      {/* Legal Notice Modal */}
+      <LegalNoticeModal 
+        isOpen={legalModalOpen} 
+        onClose={() => setLegalModalOpen(false)} 
+      />
 
       {/* Full Acronym Glossary Modal */}
       {glossaryModalOpen && (
