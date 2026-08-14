@@ -5,9 +5,12 @@ import { AcronymTooltip } from './components/AcronymTooltip';
 import { AudienceSelector } from './components/AudienceSelector';
 import { DomainSection } from './components/DomainSection';
 import { TerritorySeoHub } from './components/TerritorySeoHub';
+import { BlogSection } from './components/BlogSection';
+import { BlogArticleModal } from './components/BlogArticleModal';
 import { ContactForm } from './components/ContactForm';
 import { AuditCalculatorModal } from './components/AuditCalculatorModal';
 import { DOMAINS_INTERVENTION, ACRONYM_DICTIONARY } from './data/companyData';
+import type { BlogArticle } from './data/blogArticles';
 import { 
   ShieldCheck, 
   ArrowRight, 
@@ -24,6 +27,9 @@ export function App() {
   const [selectedDomainForContact, setSelectedDomainForContact] = useState<string | undefined>(undefined);
   const [selectedCityForContact, setSelectedCityForContact] = useState<string | undefined>(undefined);
   const [diagnosticSummary, setDiagnosticSummary] = useState<string>('');
+
+  // Blog modal state
+  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
 
   // Modals state
   const [calculatorModalOpen, setCalculatorModalOpen] = useState(false);
@@ -45,6 +51,15 @@ export function App() {
   };
 
   const handleOpenContactWithCity = (cityName?: string) => {
+    setSelectedCityForContact(cityName);
+    const element = document.getElementById('contact_section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleOpenContactWithDomainAndCity = (domainId?: string, cityName?: string) => {
+    setSelectedDomainForContact(domainId);
     setSelectedCityForContact(cityName);
     const element = document.getElementById('contact_section');
     if (element) {
@@ -377,6 +392,14 @@ export function App() {
           </div>
         )}
 
+        {/* TAB: BLOG & GUIDES SEO */}
+        {activeTab === 'blog' && (
+          <BlogSection
+            onSelectArticle={(article) => setSelectedArticle(article)}
+            onOpenContact={handleOpenContactWithDomainAndCity}
+          />
+        )}
+
         {/* TAB 2: ORIENTATEUR */}
         {activeTab === 'orientateur' && (
           <AudienceSelector
@@ -469,6 +492,14 @@ export function App() {
         isOpen={calculatorModalOpen}
         onClose={() => setCalculatorModalOpen(false)}
         onOpenContactWithDiagnostic={handleOpenContactWithDiagnostic}
+      />
+
+      {/* Blog Article Reader Modal */}
+      <BlogArticleModal
+        article={selectedArticle}
+        isOpen={selectedArticle !== null}
+        onClose={() => setSelectedArticle(null)}
+        onOpenContact={handleOpenContactWithDomainAndCity}
       />
 
     </div>

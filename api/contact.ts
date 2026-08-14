@@ -82,25 +82,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       </div>
     `;
 
-    let sendResult;
-    try {
-      sendResult = await resend.emails.send({
-        from: 'AMO Patio Réno <contact@amopatioreno.fr>',
-        to: ['contact@amopatioreno.fr', 'beaupuy.marion@outlook.fr'],
-        subject: `Nouveau Message Client — ${fullName} (${cityName})`,
-        html: htmlContent,
-      });
-    } catch (domainErr) {
-      console.warn('Falling back to onboarding sender:', domainErr);
-      sendResult = await resend.emails.send({
+    // Target emails
+    const recipients = ['contact@amopatioreno.fr', 'beaupuy.marion@outlook.fr'];
+
+    // Attempt 1: Try from custom domain contact@amopatioreno.fr
+    let response = await resend.emails.send({
+      from: 'AMO Patio Réno <contact@amopatioreno.fr>',
+      to: recipients,
+      subject: `Nouveau Message Client — ${fullName} (${cityName})`,
+      html: htmlContent,
+    });
+
+    // If custom domain sending failed (e.g. domain pending verification in Resend), retry via onboarding@resend.dev
+    if (response.error) {
+      console.warn('Custom domain send returned error, retrying with onboarding sender:', response.error);
+      response = await resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: ['contact@amopatioreno.fr', 'beaupuy.marion@outlook.fr'],
+        to: recipients,
         subject: `Nouveau Message Client — ${fullName} (${cityName})`,
         html: htmlContent,
       });
     }
 
-    return res.status(200).json({ success: true, data: sendResult });
+    if (response.error) {
+      return res.status(400).json({ error: response.error.message });
+    }
+
+    return res.status(200).json({ success: true, data: response.data });
   } catch (error: any) {
     console.error('Error sending email via Resend:', error);
     return res.status(500).json({ error: error.message || 'Erreur lors de l\'envoi de l\'email.' });
