@@ -82,21 +82,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       </div>
     `;
 
-    // Production sending: From verified domain contact@amopatioreno.fr
+    // Multi-destination dispatch: contact@amopatioreno.fr + beaupuy.marion@outlook.fr + beaupuy.marion86@gmail.com
+    const recipients = ['contact@amopatioreno.fr', 'beaupuy.marion@outlook.fr', 'beaupuy.marion86@gmail.com'];
+
     let response = await resend.emails.send({
       from: 'AMO Patio Réno <contact@amopatioreno.fr>',
-      to: ['contact@amopatioreno.fr', 'beaupuy.marion@outlook.fr'],
+      to: recipients,
       replyTo: email,
       subject: `Nouveau Message Client — ${fullName} (${cityName})`,
       html: htmlContent,
     });
 
-    // Fallback if needed
     if (response.error) {
       console.warn('Custom domain error, attempting fallback send:', response.error.message);
       response = await resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: ['beaupuy.marion86@gmail.com', 'beaupuy.marion@outlook.fr'],
+        to: recipients,
         replyTo: email,
         subject: `[PROSPECT WEB] Nouveau Message Client — ${fullName} (${cityName})`,
         html: htmlContent,
