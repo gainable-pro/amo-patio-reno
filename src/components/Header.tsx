@@ -55,11 +55,11 @@ export const Header: React.FC<HeaderProps> = ({
             </a>
 
             <a 
-              href="mailto:beaupuy.marion@outlook.fr" 
+              href="mailto:contact@amopatioreno.fr" 
               className="flex items-center gap-1.5 hover:text-[#83ae42] transition-colors text-stone-200"
             >
               <Mail className="w-3.5 h-3.5 text-[#83ae42]" />
-              <span>beaupuy.marion@outlook.fr</span>
+              <span>contact@amopatioreno.fr</span>
             </a>
 
             <span className="hidden lg:flex items-center gap-1.5 text-stone-300">

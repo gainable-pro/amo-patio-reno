@@ -32,7 +32,7 @@ export const TerritorySeoHub: React.FC<TerritorySeoHubProps> = ({ onOpenContact 
       'region': 'Bouches-du-Rhône (13)',
     },
     'telephone': '+33784429198',
-    'email': 'beaupuy.marion@outlook.fr',
+    'email': 'contact@amopatioreno.fr',
     'areaServed': CITIES_BOUCHES_DU_RHONE.map(c => c.name),
     'knowsAbout': [
       'Assistance à Maîtrise d\'Ouvrage (AMO)',

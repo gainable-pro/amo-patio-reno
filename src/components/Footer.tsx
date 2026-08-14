@@ -112,8 +112,8 @@ export const Footer: React.FC<FooterProps> = ({
               <a href="tel:0784429198" className="flex items-center gap-2 hover:text-[#83ae42] transition-colors">
                 <Phone className="w-4 h-4 text-[#83ae42]" /> 07 84 42 91 98
               </a>
-              <a href="mailto:beaupuy.marion@outlook.fr" className="flex items-center gap-2 hover:text-[#83ae42] transition-colors">
-                <Mail className="w-4 h-4 text-[#83ae42]" /> beaupuy.marion@outlook.fr
+              <a href="mailto:contact@amopatioreno.fr" className="flex items-center gap-2 hover:text-[#83ae42] transition-colors">
+                <Mail className="w-4 h-4 text-[#83ae42]" /> contact@amopatioreno.fr
               </a>
               <span className="flex items-center gap-2 text-stone-400">
                 <MapPin className="w-4 h-4 text-[#c38d34]" /> Bouches-du-Rhône (13) & limitrophes

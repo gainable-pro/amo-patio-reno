@@ -69,13 +69,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 </div>
               </a>
 
-              <a href="mailto:beaupuy.marion@outlook.fr" className="flex items-center gap-4 text-stone-200 hover:text-emerald-300 transition-colors group">
+              <a href="mailto:contact@amopatioreno.fr" className="flex items-center gap-4 text-stone-200 hover:text-emerald-300 transition-colors group">
                 <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-[#83ae42] group-hover:scale-110 transition-transform">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="text-xs text-stone-400 block">Adresse Email</span>
-                  <span className="font-bold text-sm text-white break-all">beaupuy.marion@outlook.fr</span>
+                  <span className="font-bold text-sm text-white break-all">contact@amopatioreno.fr</span>
                 </div>
               </a>
 
