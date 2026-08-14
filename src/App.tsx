@@ -6,7 +6,7 @@ import { AudienceSelector } from './components/AudienceSelector';
 import { DomainSection } from './components/DomainSection';
 import { TerritorySeoHub } from './components/TerritorySeoHub';
 import { BlogSection } from './components/BlogSection';
-import { BlogArticleModal } from './components/BlogArticleModal';
+import { BlogArticlePage } from './components/BlogArticlePage';
 import { ContactForm } from './components/ContactForm';
 import { AuditCalculatorModal } from './components/AuditCalculatorModal';
 import { DOMAINS_INTERVENTION, ACRONYM_DICTIONARY } from './data/companyData';
@@ -414,10 +414,28 @@ export function App() {
 
         {/* TAB: BLOG & GUIDES SEO */}
         {activeTab === 'blog' && (
-          <BlogSection
-            onSelectArticle={(article) => setSelectedArticle(article)}
-            onOpenContact={handleOpenContactWithDomainAndCity}
-          />
+          selectedArticle ? (
+            <BlogArticlePage
+              article={selectedArticle}
+              onBackToBlog={() => {
+                setSelectedArticle(null);
+                window.history.pushState(null, '', window.location.pathname);
+              }}
+              onSelectArticle={(art) => {
+                setSelectedArticle(art);
+                window.history.pushState(null, '', `?article=${art.slug}`);
+              }}
+              onOpenContact={handleOpenContactWithDomainAndCity}
+            />
+          ) : (
+            <BlogSection
+              onSelectArticle={(art) => {
+                setSelectedArticle(art);
+                window.history.pushState(null, '', `?article=${art.slug}`);
+              }}
+              onOpenContact={handleOpenContactWithDomainAndCity}
+            />
+          )
         )}
 
         {/* TAB 2: ORIENTATEUR */}
@@ -512,14 +530,6 @@ export function App() {
         isOpen={calculatorModalOpen}
         onClose={() => setCalculatorModalOpen(false)}
         onOpenContactWithDiagnostic={handleOpenContactWithDiagnostic}
-      />
-
-      {/* Blog Article Reader Modal */}
-      <BlogArticleModal
-        article={selectedArticle}
-        isOpen={selectedArticle !== null}
-        onClose={() => setSelectedArticle(null)}
-        onOpenContact={handleOpenContactWithDomainAndCity}
       />
 
     </div>
