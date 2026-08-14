@@ -88,6 +88,11 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
+                <button onClick={() => onNavigateTab('blog')} className="hover:text-white transition-colors text-emerald-400 font-bold flex items-center gap-1">
+                  <BookOpen className="w-3.5 h-3.5" /> Articles & Guides Techniques (40+)
+                </button>
+              </li>
+              <li>
                 <button onClick={() => onNavigateTab('secteur13')} className="hover:text-white transition-colors">
                   Interventions Bouches-du-Rhône (13)
                 </button>

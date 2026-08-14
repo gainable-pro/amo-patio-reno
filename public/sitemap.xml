@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemapindex.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemapindex.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Page d'Accueil Principale -->
+  <url>
+    <loc>https://www.amopatioreno.fr/</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Section Orientateur & Besoins -->
+  <url>
+    <loc>https://www.amopatioreno.fr/#orientateur</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Section Secteur 13 Bouches-du-Rhône -->
+  <url>
+    <loc>https://www.amopatioreno.fr/#secteur13</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Hub Blog & Guides SEO (40+ Articles) -->
+  <url>
+    <loc>https://www.amopatioreno.fr/#blog</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 5 Domaines d'Intervention -->
+  <url>
+    <loc>https://www.amopatioreno.fr/#domaine_energie</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/#domaine_bati_ancien</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/#domaine_amo</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/#domaine_entreprises</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/#domaine_formation</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 40 Articles de Blog SEO Détaillés -->
+  <!-- Audit Énergétique & RGE -->
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=audit-energetique-3cl-marseille-passoires-thermiques</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=confort-ete-climatisation-passive-aix-en-provence</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=maprimerenov-2026-eco-ptz-salon-de-provence</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=audit-energetique-rge-isolation-biosourcee-arles-camargue</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=remplacement-chaudiere-pac-air-eau-aubagne</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=diagnostic-thermique-villas-cotieres-martigues</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=renovation-energetique-globale-amo-la-ciotat</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=ite-vs-iti-isolation-climat-provencal-istres</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=reduire-facture-chauffage-vitrolles-audit-opqibi</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=transition-energetique-patrimoine-minier-gardanne</loc>
+    <lastmod>2026-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Bâti Ancien Provençal -->
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=restauration-bastide-provencale-pierre-chaux-aix</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=humidite-enduits-chaux-centre-historique-salon</loc>
+    <lastmod>2026-02-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=rehabilitation-energetique-immeuble-marseillais-trois-fenetres</loc>
+    <lastmod>2026-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=patrimoine-romain-abf-architectes-batiments-de-france-arles</loc>
+    <lastmod>2026-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=renovation-thermique-mas-en-pierre-alpilles</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=diagnostic-hygrothermique-remontee-capillaire-tarascon</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=materiaux-renovation-durables-climat-littoral-cassis</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=consolidation-planchers-bois-batiment-ancien-lambesc</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- AMO Globale -->
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=role-amo-independant-travaux-copropriete-marseille</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=maitriser-budget-planning-renovation-lourde-aix</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=reception-chantier-levee-reserves-protection-amo-aubagne</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=analyse-comparative-devis-artisans-eviter-surcouts-salon</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Appui Entreprises BTP & Formation -->
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=fluidifier-echanges-entreprise-btp-client-particulier-salon</loc>
+    <lastmod>2026-02-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.amopatioreno.fr/?article=formation-rge-ecocampus-cci-alpes-provence-salon</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
