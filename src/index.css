@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --color-soil-brown: #361B00;
+  --color-wood-brown: #3f290f;
+  --color-leaf-green: #83ae42;
+  --color-forest-green: #4d843d;
+  --color-ochre-gold: #c38d34;
+  --color-off-white: #FAF9F6;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-off-white);
+  color: #2C2621;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, .font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Professional Bureau Engineering Styling */
+.bureau-header-top {
+  background-color: #361B00;
+  color: #F3EFEA;
+  font-size: 0.75rem;
+}
+
+.bureau-card {
+  background: #FFFFFF;
+  border: 1px solid #EAE6DF;
+  box-shadow: 0 4px 20px rgba(54, 27, 0, 0.04);
+  transition: all 0.25s ease-in-out;
+}
+
+.bureau-card:hover {
+  border-color: #83ae42;
+  box-shadow: 0 10px 30px rgba(54, 27, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.bureau-badge-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #F0F7E8;
+  color: #3D6A2E;
+  border: 1px solid #D2E8BC;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bureau-badge-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #FDF8ED;
+  color: #8A611B;
+  border: 1px solid #F5E2B8;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bureau-badge-brown {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #F5EFE9;
+  color: #361B00;
+  border: 1px solid #E5D5C5;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Primary Corporate Buttons */
+.btn-bureau-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #361B00;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(54, 27, 0, 0.15);
+}
+
+.btn-bureau-primary:hover {
+  background-color: #4D2700;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(54, 27, 0, 0.25);
+}
+
+.btn-bureau-eco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4d843d;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(77, 132, 61, 0.2);
+}
+
+.btn-bureau-eco:hover {
+  background-color: #3b682e;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(77, 132, 61, 0.3);
+}
+
+.btn-bureau-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #FFFFFF;
+  color: #361B00;
+  border: 1px solid #361B00;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-bureau-outline:hover {
+  background-color: #361B00;
+  color: #FFFFFF;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #F3EFEA;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #83ae42;
+  border-radius: 3px;
+}
