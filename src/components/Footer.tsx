@@ -4,7 +4,6 @@ import {
   Mail, 
   MapPin, 
   ShieldCheck, 
-  Award, 
   BookOpen, 
   X
 } from 'lucide-react';

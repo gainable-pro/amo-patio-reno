@@ -10,8 +10,7 @@ import {
   GraduationCap, 
   CheckCircle2, 
   ArrowRight, 
-  FileCheck,
-  Compass
+  FileCheck
 } from 'lucide-react';
 
 interface AudienceSelectorProps {
@@ -26,7 +25,7 @@ export const AudienceSelector: React.FC<AudienceSelectorProps> = ({
   const [selectedAudienceId, setSelectedAudienceId] = useState<string>('particuliers');
 
   const selectedAudience = TARGET_AUDIENCES.find(a => a.id === selectedAudienceId) || TARGET_AUDIENCES[0];
-  const recommendedDomains = DOMAINS_INTERVENTION.filter(d => selectedAudience.recommendedDomainIds.includes(d.id));
+  const recommendedDomains = DOMAINS_INTERVENTION.filter(d => selectedAudience.recommendedDomains.includes(d.id));
 
   const getProfileIcon = (iconName: string) => {
     switch (iconName) {
@@ -109,7 +108,7 @@ export const AudienceSelector: React.FC<AudienceSelectorProps> = ({
         <div className="relative h-64 sm:h-72 w-full overflow-hidden">
           <img 
             src={profileImg} 
-            alt={selectedAudience.title} 
+            alt={selectedAudience.label} 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1C0E00] via-[#1C0E00]/60 to-transparent p-6 sm:p-8 flex flex-col justify-end">
@@ -117,10 +116,10 @@ export const AudienceSelector: React.FC<AudienceSelectorProps> = ({
               Profil sélectionné
             </span>
             <h2 className="font-serif font-bold text-2xl sm:text-3xl text-white">
-              {selectedAudience.title}
+              {selectedAudience.label}
             </h2>
             <p className="text-stone-200 text-xs sm:text-sm max-w-2xl mt-1">
-              {selectedAudience.subtitle}
+              {selectedAudience.description}
             </p>
           </div>
         </div>
@@ -128,7 +127,7 @@ export const AudienceSelector: React.FC<AudienceSelectorProps> = ({
         {/* Content Body */}
         <div className="p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* Left Column: Challenges */}
+          {/* Left Column: Typical Needs */}
           <div className="lg:col-span-5 space-y-4">
             <h3 className="font-serif font-bold text-lg text-[#361B00] flex items-center gap-2 border-b border-stone-200 pb-2">
               <FileCheck className="w-5 h-5 text-[#83ae42]" />
@@ -136,10 +135,10 @@ export const AudienceSelector: React.FC<AudienceSelectorProps> = ({
             </h3>
 
             <ul className="space-y-3 text-xs sm:text-sm text-stone-700">
-              {selectedAudience.challenges.map((challenge, idx) => (
+              {selectedAudience.typicalNeeds.map((need, idx) => (
                 <li key={idx} className="flex items-start gap-2.5 p-3 bg-stone-50 rounded border border-stone-200">
                   <CheckCircle2 className="w-4 h-4 text-[#4d843d] shrink-0 mt-0.5" />
-                  <span className="font-medium text-stone-800">{challenge}</span>
+                  <span className="font-medium text-stone-800">{need}</span>
                 </li>
               ))}
             </ul>
