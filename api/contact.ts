@@ -36,7 +36,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; color: #2C2621; max-width: 600px; margin: 0 auto; border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #1C0E00; color: #ffffff; padding: 24px; text-align: center;">
-          <h2 style="margin: 0; font-size: 22px;">AMO Patio Réno — Nouvelle Demande de Contact</h2>
+          <h2 style="margin: 0; font-size: 22px;">AMO Patio Réno — Demande de Contact</h2>
           <p style="margin: 5px 0 0 0; color: #83ae42; font-size: 14px;">Marion BEAUPUY — Du montage à la performance</p>
         </div>
         
@@ -82,24 +82,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       </div>
     `;
 
-    // Target emails
-    const recipients = ['contact@amopatioreno.fr', 'beaupuy.marion@outlook.fr'];
-
-    // Attempt 1: Try from custom domain contact@amopatioreno.fr
+    // Attempt 1: Send to official company emails
     let response = await resend.emails.send({
-      from: 'AMO Patio Réno <contact@amopatioreno.fr>',
-      to: recipients,
+      from: 'onboarding@resend.dev',
+      to: ['contact@amopatioreno.fr', 'beaupuy.marion@outlook.fr', 'beaupuy.marion86@gmail.com'],
       subject: `Nouveau Message Client — ${fullName} (${cityName})`,
       html: htmlContent,
     });
 
-    // If custom domain sending failed (e.g. domain pending verification in Resend), retry via onboarding@resend.dev
+    // Attempt 2: If Resend restricts to account owner in testing mode, send exclusively to registered account owner
     if (response.error) {
-      console.warn('Custom domain send returned error, retrying with onboarding sender:', response.error);
+      console.warn('Attempt 1 error, fallback to registered account owner email:', response.error);
       response = await resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: recipients,
-        subject: `Nouveau Message Client — ${fullName} (${cityName})`,
+        to: ['beaupuy.marion86@gmail.com'],
+        subject: `[PROSPECT WEB] Nouveau Message Client — ${fullName} (${cityName})`,
         html: htmlContent,
       });
     }
