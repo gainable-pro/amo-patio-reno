@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { AcronymTooltip } from './components/AcronymTooltip';
@@ -10,7 +10,7 @@ import { BlogArticleModal } from './components/BlogArticleModal';
 import { ContactForm } from './components/ContactForm';
 import { AuditCalculatorModal } from './components/AuditCalculatorModal';
 import { DOMAINS_INTERVENTION, ACRONYM_DICTIONARY } from './data/companyData';
-import type { BlogArticle } from './data/blogArticles';
+import { BLOG_ARTICLES, type BlogArticle } from './data/blogArticles';
 import { 
   ShieldCheck, 
   ArrowRight, 
@@ -33,6 +33,26 @@ export function App() {
 
   // Modals state
   const [calculatorModalOpen, setCalculatorModalOpen] = useState(false);
+
+  // Deep linking for Sitemap URLs (?article=slug, ?domaine=id, ?section=name)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const articleSlug = params.get('article');
+    const domaineId = params.get('domaine');
+    const sectionName = params.get('section');
+
+    if (articleSlug) {
+      const art = BLOG_ARTICLES.find(a => a.slug === articleSlug);
+      if (art) {
+        setSelectedArticle(art);
+        setActiveTab('blog');
+      }
+    } else if (domaineId) {
+      setActiveTab(`domaine_${domaineId}`);
+    } else if (sectionName) {
+      setActiveTab(sectionName);
+    }
+  }, []);
 
   const handleOpenContactWithAudience = (audienceId?: string) => {
     setSelectedAudienceForContact(audienceId);
