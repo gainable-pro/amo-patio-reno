@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ShieldCheck, Building2, MapPin, Mail, Phone, Lock } from 'lucide-react';
+import { X, ShieldCheck, Building2, MapPin, Mail, Phone, Lock, Code, Globe } from 'lucide-react';
 
 interface LegalNoticeModalProps {
   isOpen: boolean;
@@ -114,11 +114,42 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({ isOpen, onCl
             </div>
           </div>
 
-          {/* Section 4: Propriété intellectuelle & Protection des données RGPD */}
+          {/* Section 4: Agence Créatrice du Site */}
+          <div className="space-y-4">
+            <h4 className="font-serif font-bold text-lg text-[#361B00] flex items-center gap-2 border-b border-stone-200 pb-2">
+              <Code className="w-5 h-5 text-[#83ae42]" />
+              4. Conception & Développement du Site Web (Agence Web)
+            </h4>
+
+            <div className="p-4 bg-stone-50 rounded-lg border border-stone-200 text-xs sm:text-sm text-stone-700 space-y-2">
+              <div className="flex items-center gap-2 font-bold text-[#361B00] text-base font-serif">
+                <Globe className="w-4 h-4 text-[#83ae42]" />
+                <span>EXCEED DIGITAL (SAS)</span>
+              </div>
+              <p><strong>Agence créatrice :</strong> Exceed Digital</p>
+              <p>
+                <strong>Site web officiel :</strong>{' '}
+                <a 
+                  href="https://exceeddigital.fr" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-emerald-800 underline font-semibold hover:text-emerald-950 transition-colors"
+                >
+                  exceeddigital.fr
+                </a>
+              </p>
+              <p><strong>SIRET :</strong> 101 447 944 00014 (SIREN : 101 447 944)</p>
+              <p><strong>Siège social :</strong> Rue du Pourra, 13140 Miramas, France</p>
+              <p><strong>RCS :</strong> Salon-de-Provence | <strong>Code NAF / APE :</strong> 6201Z (Programmation informatique)</p>
+              <p><strong>TVA Intracommunautaire :</strong> FR39 101447944</p>
+            </div>
+          </div>
+
+          {/* Section 5: Propriété intellectuelle & Protection des données RGPD */}
           <div className="space-y-4">
             <h4 className="font-serif font-bold text-lg text-[#361B00] flex items-center gap-2 border-b border-stone-200 pb-2">
               <Lock className="w-5 h-5 text-[#83ae42]" />
-              4. Propriété Intellectuelle & Protection des Données (RGPD)
+              5. Propriété Intellectuelle & Protection des Données (RGPD)
             </h4>
 
             <div className="text-xs sm:text-sm text-stone-700 leading-relaxed space-y-3">

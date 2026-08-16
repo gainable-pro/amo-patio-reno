@@ -145,15 +145,26 @@ export const Footer: React.FC<FooterProps> = ({
           <div>
             © {new Date().getFullYear()} AMO Patio Réno — Marion BEAUPUY. Tous droits réservés.
           </div>
-          <div className="flex items-center gap-4 text-[11px]">
+          <div className="flex flex-wrap items-center gap-3 text-[11px]">
             <span>OPQIBI RGE N°1911</span>
+            <span>•</span>
             <span>CCI EcoCampus Référente</span>
+            <span>•</span>
             <button
               onClick={() => setLegalModalOpen(true)}
               className="underline hover:text-[#83ae42] transition-colors cursor-pointer"
             >
               Mentions Légales
             </button>
+            <span>•</span>
+            <a
+              href="https://exceeddigital.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-emerald-400 transition-colors inline-flex items-center gap-1"
+            >
+              Conception : <span className="font-semibold text-stone-200 underline">Exceed Digital</span>
+            </a>
           </div>
         </div>
 
