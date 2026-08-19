@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import { BLOG_ARTICLES, type BlogArticle } from '../data/blogArticles';
 
+import { updatePageSeo } from '../utils/seo';
+
 interface BlogArticlePageProps {
   article: BlogArticle;
   onBackToBlog: () => void;
@@ -25,17 +27,12 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
   onSelectArticle,
   onOpenContact,
 }) => {
-  // Update document title and scroll to top on mount / change
+  // Update document title, meta tags, canonical link and scroll to top on mount / change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = `${article.title} | AMO Patio Réno — Marion BEAUPUY`;
-    
-    // Update canonical link or meta description dynamically
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', article.excerpt);
-    }
+    updatePageSeo({ article });
   }, [article]);
+
 
   // Find related articles (same domain or city)
   const relatedArticles = BLOG_ARTICLES.filter(

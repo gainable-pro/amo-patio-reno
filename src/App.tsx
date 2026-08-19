@@ -21,6 +21,8 @@ import {
   GraduationCap
 } from 'lucide-react';
 
+import { updatePageSeo } from './utils/seo';
+
 export function App() {
   const [activeTab, setActiveTab] = useState<string>('accueil');
   const [selectedAudienceForContact, setSelectedAudienceForContact] = useState<string | undefined>(undefined);
@@ -53,6 +55,22 @@ export function App() {
       setActiveTab(sectionName);
     }
   }, []);
+
+  // Synchronize SEO Meta Tags & Canonical Link with Active Page State
+  useEffect(() => {
+    if (selectedArticle) {
+      updatePageSeo({ article: selectedArticle });
+    } else if (activeTab.startsWith('domaine_')) {
+      const domId = activeTab.replace('domaine_', '');
+      const dom = DOMAINS_INTERVENTION.find(d => d.id === domId);
+      updatePageSeo({ domain: dom });
+    } else if (activeTab !== 'accueil') {
+      updatePageSeo({ section: activeTab });
+    } else {
+      updatePageSeo({});
+    }
+  }, [activeTab, selectedArticle]);
+
 
   const handleOpenContactWithAudience = (audienceId?: string) => {
     setSelectedAudienceForContact(audienceId);
