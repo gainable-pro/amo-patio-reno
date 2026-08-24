@@ -1,40 +1,50 @@
 import type { BlogArticle } from '../data/blogArticles';
 import type { DomainIntervention } from '../data/companyData';
 
+const domainSlugMap: Record<string, string> = {
+  'energie': 'energie',
+  'bati_ancien': 'bati-ancien',
+  'amo': 'amo',
+  'entreprises': 'entreprises',
+  'formation': 'formation'
+};
+
 export function updatePageSeo(params: {
   article?: BlogArticle | null;
   domain?: DomainIntervention | null;
   section?: string | null;
 }) {
   const baseUrl = 'https://www.amopatioreno.fr';
-  let title = 'AMO Patio Réno | Du montage à la performance — Marion BEAUPUY (13)';
-  let description = "AMO Patio Réno — Cabinet d'Assistance à Maîtrise d'Ouvrage (AMO), audit énergétique RGE et ingénierie du bâtiment par Marion BEAUPUY dans les Bouches-du-Rhône (13). Marseille, Aix-en-Provence, Salon-de-Provence, Arles, Aubagne.";
+  let title = 'AMO Rénovation Énergétique & Audit RGE (13) | Patio Réno — Marion BEAUPUY';
+  let description = "AMO Patio Réno — Cabinet d'Assistance à Maîtrise d'Ouvrage (AMO), audit énergétique RGE qualifié OPQIBI 1911 et accompagnement rénovation globale par Marion BEAUPUY dans les Bouches-du-Rhône (13). Marseille, Aix-en-Provence, Salon-de-Provence, Arles, Aubagne.";
   let canonicalUrl = `${baseUrl}/`;
+  let ogImage = `${baseUrl}/og-image.jpg`;
 
   if (params.article) {
     const art = params.article;
-    title = `${art.title} | AMO Patio Réno — Marion BEAUPUY`;
+    title = `${art.title} | AMO Patio Réno (13)`;
     description = art.excerpt;
-    canonicalUrl = `${baseUrl}/?article=${encodeURIComponent(art.slug)}`;
+    canonicalUrl = `${baseUrl}/articles/${art.slug}`;
   } else if (params.domain) {
     const dom = params.domain;
-    title = `${dom.title} — AMO Patio Réno | Marion BEAUPUY (13)`;
-    description = `${dom.tagline} — ${dom.description.substring(0, 150)}...`;
-    canonicalUrl = `${baseUrl}/?domaine=${encodeURIComponent(dom.id)}`;
+    const domSlug = domainSlugMap[dom.id] || dom.id;
+    title = `${dom.title} — AMO Rénovation (13) | Patio Réno`;
+    description = `${dom.tagline} — ${dom.description.substring(0, 160)}`;
+    canonicalUrl = `${baseUrl}/domaines/${domSlug}`;
   } else if (params.section) {
     const sec = params.section;
     if (sec === 'orientateur') {
-      title = 'Orientateur & Diagnostic Projet AMO | AMO Patio Réno';
-      description = 'Identifiez vos besoins en Assistance à Maîtrise d\'Ouvrage (AMO) ou Audit Énergétique dans les Bouches-du-Rhône (13).';
-      canonicalUrl = `${baseUrl}/?section=orientateur`;
+      title = 'Orientateur & Diagnostic Projet AMO Rénovation (13) | Patio Réno';
+      description = 'Simulez vos besoins en Assistance à Maîtrise d\'Ouvrage (AMO), Audit Énergétique RGE et subventions MaPrimeRénov\' dans les Bouches-du-Rhône.';
+      canonicalUrl = `${baseUrl}/orientateur`;
     } else if (sec === 'secteur13') {
-      title = 'Intervention dans les Bouches-du-Rhône (13) | AMO Patio Réno';
-      description = 'AMO Patio Réno intervient à Marseille, Aix-en-Provence, Salon-de-Provence, Arles, Aubagne et dans tout le 13.';
-      canonicalUrl = `${baseUrl}/?section=secteur13`;
+      title = 'AMO & Audit Énergétique Bouches-du-Rhône (13) | Marseille, Aix, Salon, Arles';
+      description = 'Cabinet AMO Patio Réno par Marion BEAUPUY : conseil en rénovation énergétique et suivi de chantier à Marseille, Aix-en-Provence, Salon-de-Provence, Arles, Aubagne.';
+      canonicalUrl = `${baseUrl}/secteur-13`;
     } else if (sec === 'blog') {
-      title = 'Blog Technique & Guides AMO / RGE | AMO Patio Réno';
-      description = 'Articles techniques, réglementations MaPrimeRénov 2026, audits énergétiques 3CL et rénovation du bâti ancien dans le 13.';
-      canonicalUrl = `${baseUrl}/?section=blog`;
+      title = 'Blog Technique AMO & Guides Rénovation Énergétique RGE (13) | Patio Réno';
+      description = 'Retrouvez nos 40 guides techniques sur l\'audit 3CL, le bâti ancien provençal, la réglementation MaPrimeRénov\' 2026 et l\'accompagnement de chantier dans le 13.';
+      canonicalUrl = `${baseUrl}/blog`;
     }
   }
 
@@ -71,9 +81,11 @@ export function updatePageSeo(params: {
   setMetaAttr('meta[property="og:title"]', 'content', title);
   setMetaAttr('meta[property="og:description"]', 'content', description);
   setMetaAttr('meta[property="og:url"]', 'content', canonicalUrl);
+  setMetaAttr('meta[property="og:image"]', 'content', ogImage);
   setMetaAttr('meta[property="twitter:title"]', 'content', title);
   setMetaAttr('meta[property="twitter:description"]', 'content', description);
   setMetaAttr('meta[property="twitter:url"]', 'content', canonicalUrl);
+  setMetaAttr('meta[property="twitter:image"]', 'content', ogImage);
 
   // Update Canonical Link
   let canonicalEl = document.querySelector('link[rel="canonical"]');
@@ -107,6 +119,7 @@ export function updatePageSeo(params: {
       },
       'datePublished': art.publishDate,
       'mainEntityOfPage': canonicalUrl,
+      'image': ogImage,
       'contentLocation': {
         '@type': 'Place',
         'name': `${art.cityName} (${art.postalCode})`

@@ -36,38 +36,104 @@ export function App() {
   // Modals state
   const [calculatorModalOpen, setCalculatorModalOpen] = useState(false);
 
-  // Deep linking for Sitemap URLs (?article=slug, ?domaine=id, ?section=name)
+  // Clean URL Routing & Deep Linking (/articles/slug, /domaines/id, /orientateur...)
   useEffect(() => {
+    const pathname = window.location.pathname;
     const params = new URLSearchParams(window.location.search);
-    const articleSlug = params.get('article');
-    const domaineId = params.get('domaine');
-    const sectionName = params.get('section');
+    const legacyArticle = params.get('article');
+    const legacyDomaine = params.get('domaine');
+    const legacySection = params.get('section');
 
-    if (articleSlug) {
-      const art = BLOG_ARTICLES.find(a => a.slug === articleSlug);
+    const domainSlugMap: Record<string, string> = {
+      'energie': 'energie',
+      'bati-ancien': 'bati_ancien',
+      'amo': 'amo',
+      'entreprises': 'entreprises',
+      'formation': 'formation'
+    };
+
+    if (pathname.startsWith('/articles/')) {
+      const slug = pathname.replace('/articles/', '').replace(/\/$/, '');
+      const art = BLOG_ARTICLES.find(a => a.slug === slug);
       if (art) {
         setSelectedArticle(art);
         setActiveTab('blog');
       }
-    } else if (domaineId) {
-      setActiveTab(`domaine_${domaineId}`);
-    } else if (sectionName) {
-      setActiveTab(sectionName);
+    } else if (pathname.startsWith('/domaines/')) {
+      const slug = pathname.replace('/domaines/', '').replace(/\/$/, '');
+      const domId = domainSlugMap[slug] || slug;
+      setActiveTab(`domaine_${domId}`);
+    } else if (pathname === '/orientateur') {
+      setActiveTab('orientateur');
+    } else if (pathname === '/secteur-13') {
+      setActiveTab('secteur13');
+    } else if (pathname === '/blog') {
+      setActiveTab('blog');
+    } else if (legacyArticle) {
+      const art = BLOG_ARTICLES.find(a => a.slug === legacyArticle);
+      if (art) {
+        setSelectedArticle(art);
+        setActiveTab('blog');
+        window.history.replaceState(null, '', `/articles/${art.slug}`);
+      }
+    } else if (legacyDomaine) {
+      setActiveTab(`domaine_${legacyDomaine}`);
+      const slug = domainSlugMap[legacyDomaine] || legacyDomaine;
+      window.history.replaceState(null, '', `/domaines/${slug}`);
+    } else if (legacySection) {
+      const pathMap: Record<string, string> = {
+        'orientateur': '/orientateur',
+        'secteur13': '/secteur-13',
+        'blog': '/blog'
+      };
+      setActiveTab(legacySection);
+      if (pathMap[legacySection]) {
+        window.history.replaceState(null, '', pathMap[legacySection]);
+      }
     }
   }, []);
 
-  // Synchronize SEO Meta Tags & Canonical Link with Active Page State
+  // Synchronize SEO Meta Tags & Clean URL Path with Active State
   useEffect(() => {
+    const domainSlugMap: Record<string, string> = {
+      'energie': 'energie',
+      'bati_ancien': 'bati-ancien',
+      'amo': 'amo',
+      'entreprises': 'entreprises',
+      'formation': 'formation'
+    };
+
     if (selectedArticle) {
       updatePageSeo({ article: selectedArticle });
+      const targetPath = `/articles/${selectedArticle.slug}`;
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState(null, '', targetPath);
+      }
     } else if (activeTab.startsWith('domaine_')) {
       const domId = activeTab.replace('domaine_', '');
       const dom = DOMAINS_INTERVENTION.find(d => d.id === domId);
       updatePageSeo({ domain: dom });
+      const slug = domainSlugMap[domId] || domId;
+      const targetPath = `/domaines/${slug}`;
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState(null, '', targetPath);
+      }
     } else if (activeTab !== 'accueil') {
       updatePageSeo({ section: activeTab });
+      const sectionPathMap: Record<string, string> = {
+        'orientateur': '/orientateur',
+        'secteur13': '/secteur-13',
+        'blog': '/blog'
+      };
+      const targetPath = sectionPathMap[activeTab] || '/';
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState(null, '', targetPath);
+      }
     } else {
       updatePageSeo({});
+      if (window.location.pathname !== '/' && !window.location.pathname.startsWith('/api')) {
+        window.history.pushState(null, '', '/');
+      }
     }
   }, [activeTab, selectedArticle]);
 
