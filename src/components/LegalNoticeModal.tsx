@@ -142,6 +142,18 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({ isOpen, onCl
               <p><strong>Siège social :</strong> Rue du Pourra, 13140 Miramas, France</p>
               <p><strong>RCS :</strong> Salon-de-Provence | <strong>Code NAF / APE :</strong> 6201Z (Programmation informatique)</p>
               <p><strong>TVA Intracommunautaire :</strong> FR39 101447944</p>
+              <p className="mt-2 pt-2 border-t border-stone-200 text-stone-600 text-xs">
+                <strong>Réseau partenaire & Référencement :</strong>{' '}
+                Membre partenaire du réseau{' '}
+                <a 
+                  href="https://www.gainable.fr" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-emerald-800 underline font-semibold hover:text-emerald-950 transition-colors"
+                >
+                  Gainable.fr — Les Experts de la Climatisation
+                </a>.
+              </p>
             </div>
           </div>
 
