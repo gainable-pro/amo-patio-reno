@@ -134,14 +134,19 @@ export const TerritorySeoHub: React.FC<TerritorySeoHubProps> = ({ onOpenContact 
             </div>
 
             <div className="pt-4 border-t border-stone-700 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="text-xs text-stone-400">
-                Disponibilité rapide pour rendez-vous terrain sur {selectedCity.name}.
-              </span>
+              <a
+                href={`/villes/${selectedCity.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
+                className="w-full sm:w-auto px-5 py-2.5 bg-[#83ae42] hover:bg-[#6c9135] text-stone-950 font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-2"
+              >
+                <span>Voir la page AMO & Audit RGE à {selectedCity.name}</span>
+                <ChevronRight className="w-4 h-4" />
+              </a>
+
               <button
                 onClick={() => onOpenContact(selectedCity.name)}
                 className="w-full sm:w-auto px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-stone-950 font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-2"
               >
-                <span>Contacter pour un projet à {selectedCity.name}</span>
+                <span>Contacter pour {selectedCity.name}</span>
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>

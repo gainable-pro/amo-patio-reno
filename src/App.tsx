@@ -7,10 +7,12 @@ import { DomainSection } from './components/DomainSection';
 import { TerritorySeoHub } from './components/TerritorySeoHub';
 import { BlogSection } from './components/BlogSection';
 import { BlogArticlePage } from './components/BlogArticlePage';
+import { CityLandingPage } from './components/CityLandingPage';
 import { ContactForm } from './components/ContactForm';
 import { AuditCalculatorModal } from './components/AuditCalculatorModal';
 import { DOMAINS_INTERVENTION, ACRONYM_DICTIONARY } from './data/companyData';
 import { BLOG_ARTICLES, type BlogArticle } from './data/blogArticles';
+import { CITY_SEO_DATA } from './data/cityPagesData';
 import { 
   ShieldCheck, 
   ArrowRight, 
@@ -33,6 +35,9 @@ export function App() {
   // Blog modal state
   const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
 
+  // City landing page state
+  const [selectedCitySlug, setSelectedCitySlug] = useState<string | null>(null);
+
   // Modals state
   const [calculatorModalOpen, setCalculatorModalOpen] = useState(false);
 
@@ -52,7 +57,13 @@ export function App() {
       'formation': 'formation'
     };
 
-    if (pathname.startsWith('/articles/')) {
+    if (pathname.startsWith('/villes/')) {
+      const slug = pathname.replace('/villes/', '').replace(/\/$/, '');
+      if (CITY_SEO_DATA[slug]) {
+        setSelectedCitySlug(slug);
+        setActiveTab(`ville_${slug}`);
+      }
+    } else if (pathname.startsWith('/articles/')) {
       const slug = pathname.replace('/articles/', '').replace(/\/$/, '');
       const art = BLOG_ARTICLES.find(a => a.slug === slug);
       if (art) {
@@ -103,7 +114,17 @@ export function App() {
       'formation': 'formation'
     };
 
-    if (selectedArticle) {
+    if (activeTab.startsWith('ville_') || selectedCitySlug) {
+      const slug = selectedCitySlug || activeTab.replace('ville_', '');
+      const city = CITY_SEO_DATA[slug];
+      if (city) {
+        updatePageSeo({ city });
+        const targetPath = `/villes/${slug}`;
+        if (window.location.pathname !== targetPath) {
+          window.history.pushState(null, '', targetPath);
+        }
+      }
+    } else if (selectedArticle) {
       updatePageSeo({ article: selectedArticle });
       const targetPath = `/articles/${selectedArticle.slug}`;
       if (window.location.pathname !== targetPath) {
@@ -135,7 +156,7 @@ export function App() {
         window.history.pushState(null, '', '/');
       }
     }
-  }, [activeTab, selectedArticle]);
+  }, [activeTab, selectedArticle, selectedCitySlug]);
 
 
   const handleOpenContactWithAudience = (audienceId?: string) => {
@@ -584,6 +605,19 @@ export function App() {
             onOpenContact={handleOpenContactWithDomain}
             onNavigateToDomain={(id) => {
               setActiveTab(`domaine_${id}`);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        )}
+
+        {/* TAB VILLES SEO LOCALES */}
+        {activeTab.startsWith('ville_') && (
+          <CityLandingPage
+            citySlug={selectedCitySlug || activeTab.replace('ville_', '')}
+            onOpenContact={handleOpenContactWithCity}
+            onNavigateToCity={(slug) => {
+              setSelectedCitySlug(slug);
+              setActiveTab(`ville_${slug}`);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />

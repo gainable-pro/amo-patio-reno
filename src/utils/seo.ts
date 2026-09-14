@@ -1,5 +1,6 @@
 import type { BlogArticle } from '../data/blogArticles';
 import type { DomainIntervention } from '../data/companyData';
+import type { CitySeoDetails } from '../data/cityPagesData';
 
 const domainSlugMap: Record<string, string> = {
   'energie': 'energie',
@@ -12,6 +13,7 @@ const domainSlugMap: Record<string, string> = {
 export function updatePageSeo(params: {
   article?: BlogArticle | null;
   domain?: DomainIntervention | null;
+  city?: CitySeoDetails | null;
   section?: string | null;
 }) {
   const baseUrl = 'https://www.amopatioreno.fr';
@@ -20,7 +22,12 @@ export function updatePageSeo(params: {
   let canonicalUrl = `${baseUrl}/`;
   let ogImage = `${baseUrl}/og-image.jpg`;
 
-  if (params.article) {
+  if (params.city) {
+    const c = params.city;
+    title = c.title;
+    description = c.metaDescription;
+    canonicalUrl = `${baseUrl}/villes/${c.slug}`;
+  } else if (params.article) {
     const art = params.article;
     title = `${art.title} | AMO Patio Réno (13)`;
     description = art.excerpt;
